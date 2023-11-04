@@ -1,0 +1,27 @@
+
+.AboutUsBox {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  width: 1200px; /* Establece el ancho deseado para el contenedor principal */
+}
+
+.DescTitle {
+  width: 100%; /* Establece el ancho al 100% del contenedor principal */
+  color: #fff; /* Establece un color de texto opcional */
+  padding: 10px; /* Agrega espaciado interno para el contenido */
+  border-radius: 5px; /* Agrega esquinas redondeadas al contenedor superior */
+  font-size: 80px;
+}
+
+.Description {
+  top: 40px; /* Ajusta la posición vertical del contenedor flotante */
+  width: 100%; /* Establece el ancho al 100% del contenedor principal */
+  text-align: center; /* Centra el texto horizontalmente en el cuadro flotante */
+  padding: 20px; /* Agrega espaciado interno para el contenido */
+  border: 1px solid #ccc; /* Agrega un borde opcional al cuadro flotante */
+  background-color: #f0f0f0; /* Establece un color de fondo opcional */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega una sombra al cuadro flotante */
+  border-radius: 10px; /* Agrega esquinas redondeadas al cuadro flotante */
+  font-size: 20px;
+}
