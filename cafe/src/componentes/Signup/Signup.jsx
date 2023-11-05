@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import  {useState} from "react";
 import NavBar from "../../componentes/header/Header";
 import { Link } from "react-router-dom";
 import "./Signup.css";
