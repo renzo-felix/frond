@@ -1,0 +1,40 @@
+.header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: darkslategray;
+    width: 100%;
+    z-index: 100;
+}
+
+.nav {
+    height: calc(var(--header-height) + 1.5rem);
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+
+}
+
+.nav__logo-img {
+  width: 190px;
+}
+.nav__list {
+    display: flex;
+    column-gap: 2rem;
+}
+
+.nav__link,
+.nav__toggle { 
+    color: var(--title-color);
+}
+
+.nav_-link {
+    font-size: var(--larger-font-size);
+    font-weight: var(--weight-500);
+}
+
+.nav__toggle {
+    font-size: var(--h2-font-size);
+    display: none;
+    
+}

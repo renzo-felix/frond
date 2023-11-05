@@ -1,42 +1,135 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/*=================================== 
+#GOOGLE FONTS 
+===================================*/
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&display=swap');
+
+
+/*=================================== 
+#CSS VARIABLES
+===================================*/
+
+:root {
+  --header-height: 5rem;
+
+  /*===============
+   * Colores
+  ===============*/
+
+  --first-color: hsl(27, 34%, 59%);
+  --first-color-light: hsl(42, 13%, 34%);
+  --title-color: hsl(0, 0%, 100%);
+  --text-color: hsl(0, 0%, 67%);
+  --bg-color: hsl(0, 0%, 8%);
+  --container-color: hsl(0, 0%, 6%);
+  --hsla: hsl(0, 0%, 0%, 0.75);
+
+  /*===============
+   * Tipografia
+  ===============*/
+
+  --body-font: 'Kanit', sans-serif;
+  --second-font: 'Lobster Two', cursive;
+
+  --biggest-font-size: 4.125rem;
+  --bigger-font-size: 3.125rem;
+  --big-font-size: 2.5rem;
+  --h1-font-size: 1.875rem;
+  --h2-font-size: 1.75rem;
+  --h3-font-size: 1.5rem;
+  --largest-font-size: 1.375rem;
+  --larger-font-size: 1.25rem;
+  --large-font-size: 1.125rem;
+  --normal-font-size: 1rem;
+
+  --weight-400: 400;
+  --weight-500: 500;
+  --weight-600: 600;
+  --weight-700: 700;
+
+  /*===============
+   * Bordes-radio
+  ===============*/
+
+  --radius: 0.5rem;
+
+  /*===============
+   * Transiciones
+  ===============*/
+
+  --transition: ease-in-out;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/*=================================== 
+#RESET
+===================================*/
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input,
+textarea,
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+body {
+  color: var(--text-color);
+  background: var(--bg-color);
+
 }
 
-.card {
-  padding: 2em;
+h1,
+h2,
+h3 {
+  font-family: var(--second-font);
+  color: var(--title-color);
+  font-weight: var(--weight-400);
 }
 
-.read-the-docs {
-  color: #888;
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+
+}
+
+input,
+textarea{ 
+  border: none;
+  outline: none;
+
+}
+
+img {
+  max-width: 100%;
+}
+/*=================================== 
+#clases de css reutilizables
+===================================*/
+
+.container { 
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+}
+
+.btn {
+  display: inline-block;
+  color: var(--title-color);
+  background: var(--first-color) ;
+  border: 2px solid var(--first-color);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius);
+}
+
+.btn:hover {
+  background-color: transparent;
+  color: var(--first-color);
 }
