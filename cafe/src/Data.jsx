@@ -50,7 +50,7 @@ export const links = [
  
   {
     name: 'Login',
-    path: 'logins',
+    path: 'login',
   },
 ];
 
