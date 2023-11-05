@@ -8,13 +8,15 @@ import Menu from "./componentes/Menu/Menu.jsx";
 import Login from "./componentes/Login/Login.jsx";
 import Signup from "./componentes/Signup/Signup.jsx";
 
+
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login />,
+    element: <App />,
   },
   {
-    path: "/home",
+    path: "https://frond-ox3z.vercel.app/home",
     element: <App />,
   },
   {
@@ -41,6 +43,7 @@ const router = createBrowserRouter([
   },
   */
 ]);
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
