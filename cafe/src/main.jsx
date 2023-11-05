@@ -13,10 +13,10 @@ import Signup from "./componentes/Signup/Signup.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Login />,
   },
   {
-    path: "https://frond-ox3z.vercel.app/home",
+    path: "/home",
     element: <App />,
   },
   {
