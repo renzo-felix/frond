@@ -43,7 +43,7 @@ function Signup() {
               {errors.email && <span> {errors.email} </span>}
             </div>
             <div className="inputSpace">
-              <label htmlFor="password">Email</label>
+              <label htmlFor="password">Password</label>
               <input type="password" placeholder="Password" name='password' onChange={handleInput}></input>
               {errors.password && <span> {errors.password} </span>}
             </div>

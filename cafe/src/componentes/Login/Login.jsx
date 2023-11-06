@@ -40,7 +40,7 @@ function LoginPage() {
               {errors.email && <span> {errors.email} </span>}
             </div>
             <div className="inputSpace">
-              <label htmlFor="password">Email</label>
+              <label htmlFor="password">Password</label>
               <input type="password" placeholder="Password" onChange={handleInput} name='password'></input>
               {errors.password && <span> {errors.password} </span>}
             </div>
