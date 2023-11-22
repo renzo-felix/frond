@@ -27,30 +27,31 @@ import testimonial3 from './assets/testimonial-3.jpg';
 import testimonial4 from './assets/testimonial-4.jpg';
 
 export const links = [
+
   {
     name: 'Home',
-    path: 'home',
+    path: '/home/:token',
   },
   {
     name: 'About',
-    path: 'about',
+    path: '/about',
   },
   {
     name: 'Features',
-    path: 'features',
+    path: '/features',
   },
   {
     name: 'Menu',
-    path: 'menu',
+    path: 'https://tablas-renzos-projects-09b7fe39.vercel.app/#/home',
   },
   {
     name: 'Gallery',
-    path: 'gallery',
+    path: '/gallery',
   },
  
   {
     name: 'Login',
-    path: 'login',
+    path: '/login',
   },
 ];
 

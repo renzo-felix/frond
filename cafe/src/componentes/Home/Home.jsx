@@ -1,8 +1,18 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './home.css';
+import { useParams } from 'react-router-dom';
+import Header from '../header/Header';
 
-const Home = () => {
+const Home = (token) => {
+  const Params = useParams();
+  if (token == undefined)
+    token = Params.token;
+
+  console.log(token)
   return (
+    <>
+    <Header token={Params.token}/>
     <section className='home' id='home'>
       <div className='home__container container'>
         <div className='home__content'>
@@ -18,18 +28,22 @@ const Home = () => {
           </p>
 
           <div className='home__btns'>
-            <a href='#menu' className='btn'>
-               Check Menu
-            </a>
+            {token && <a className='btn'>
+               <Link to={`https://tablas.vercel.app/#/Productos?token=${token}`}>
+                Check Menu
+               </Link> 
+            </a>}
 
-            <a href='#reservation' className='btn home__btn'>
-               Book reservations
-            </a>
+            {token && <a  className='btn home__btn'>
+                <Link to={`https://tablas.vercel.app/#/reservas?token=${token}`}>
+                  Book reservations
+                </Link>
+            </a>}
           </div>
         </div>
       </div>
     </section>
-       
+       </>
   );
 };
 

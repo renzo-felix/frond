@@ -1,59 +1,89 @@
 import React, {useState} from "react";
+import axios from "axios";
 import NavBar from "../../componentes/header/Header";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import "./Login.css";
-import Validation from "../../LoginValidation";
+import { useForm } from "react-hook-form";
+//import Validation from "../../LoginValidation";
 
 function LoginPage() {
-  const [values, setValues] = useState({
-    email: '',
-    password: ''
-  })
+  const {
+    register, //Le da el nombre a el valor del input
+    handleSubmit, //Funciona cuando ocurre el submit, al dar click en el boton de signup
+    formState: { errors }, //Forma de ver, en este caso, los errores que podemos seleccionar
+    watch, //Herramienta asombrosa: watch retorna un valor que se envie
+  } = useForm(); //Estas son funciones basicas de useForm
 
-  const [errors, setErrors] = useState({})
-  //Consta de dos partes: el estado de error de email y el estado de error de password
+  const navigate = useNavigate();
+  let Token;
 
-  const handleInput = (e) => {
-    setValues(prev => ({...prev, [e.target.name]: [e.target.value]}))
-  }
+  const on_Submit = handleSubmit(async (data) => {
+    console.log(data);
+    await axios.post('https://proyectodbp-production.up.railway.app/api/auth/login', data).then(res => {
+      Token = res.data.token;
+      console.log(Token);
+      navigate(`/home/${Token}`);
+    }).
+    catch(error => console.log(error));
+    console.log(watch('password'))
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setErrors(Validation(values))
-  }
-
-  /*Pasos:
-  Al llenar los espacios dentro del form, se activa handleSubmit que validará si estan correctos el email y contraseña.
-  Lo que esta dentro de email y password se va a guardar, que constan de dos partes: su nombre y el valor enviado.
-  Se va a mostrar como alerta los valores de errors.
-  */
   return (
     <div>
       <NavBar />
-      <div className="allPage">
-        <div className="formContainer">
-          <p className="contTitle">Sign In</p>
-          <form action="" onSubmit={handleSubmit}>
-            <div className="inputSpace">
-              <label htmlFor="email">Email</label>
-              <input type="email" placeholder="Email" onChange={handleInput} name='email'></input>
-              {errors.email && <span> {errors.email} </span>}
-            </div>
-            <div className="inputSpace">
-              <label htmlFor="password">Password</label>
-              <input type="password" placeholder="Password" onChange={handleInput} name='password'></input>
-              {errors.password && <span> {errors.password} </span>}
-            </div>
-            <button type='submit' className="loginButton">Login</button>
-            <p>You are agree to our terms and policies?</p>
-            <Link to="/signup">
-              <button className="createAccountButton">Create Account</button>
-            </Link>
-          </form>
-        </div>
+      <div className="formContainer">
+        <p className="contTitle">Sign Up</p>
+        <form onSubmit={on_Submit}>
+          <label className="formlabel" htmlFor="email">
+            Email
+          </label>
+          <input
+            type="email"
+            placeholder="Email"
+            {...register("email", {
+              required: {
+                value: true,
+                message: "This field is required",
+              },
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                message: "Correo no valido",
+              },
+            })}
+          ></input>
+          {errors.email && <span>{errors.email.message}</span>}
+          <label className="formlabel" htmlFor="password">
+            Password
+          </label>
+          <input
+            type="password"
+            placeholder="Password"
+            {...register("password", {
+              required: {
+                value: true,
+                message: "This field is required",
+              },
+              minLength: {
+                value: 8,
+                message: "The password must be 8 to 25 characters",
+              },
+              maxLength: {
+                value: 25,
+                message: "The password must be 8 to 25 characters",
+              },
+            })}
+          ></input>
+          {errors.password && <span>{errors.password.message}</span>}
+          <button className="signLogButton">Log in</button>
+          <p>Are you not register?</p>
+          <Link to="/signup">
+            <button className="signLogButton">Create Account</button>
+          </Link>
+        </form>
       </div>
     </div>
   );
+
 }
 
 export default LoginPage;
