@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import Header from './componentes/header/Header';
-import Home from './componentes/home/Home';
+import Home from './componentes/Home/Home';
 import { useParams } from 'react-router-dom';
 
 
