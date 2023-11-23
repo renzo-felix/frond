@@ -6,7 +6,7 @@ import App from "./App.jsx";
 import About from "./componentes/about/About.jsx";
 // import Menu from "./componentes/Menu/Menu.jsx";
 import Login from "./componentes/Login/Login.jsx";
-import Signup from "./componentes/signup/Signup.jsx";
+import Signup from "./componentes/Signup/Signup.jsx";
 import Features from "./componentes/features/Features.jsx";
 // import Gallery from "./componentes/Gallery/Gallery.jsx";
 
