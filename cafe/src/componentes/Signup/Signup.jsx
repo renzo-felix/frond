@@ -4,29 +4,51 @@ import NavBar from "../../componentes/header/Header";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 import { useForm } from "react-hook-form";
-//import Validation from "../../SignupValidation";
+import Cookies from 'js-cookie';
+
 
 function Signup() {
-  const {
-    register, //Le da el nombre a el valor del input
-    handleSubmit, //Funciona cuando ocurre el submit, al dar click en el boton de signup
-    formState: { errors }, //Forma de ver, en este caso, los errores que podemos seleccionar
-    watch, //Herramienta asombrosa: watch retorna un valor que se envie
-  } = useForm(); //Estas son funciones basicas de useForm
+ 
+ 
+const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
 
   const navigate = useNavigate();
-  let Token;
 
-  const on_Submit = handleSubmit((data) => {
-    axios.post('https://proyectodbp-production.up.railway.app/api/auth/signup',{
-      firstName: watch('firstName'),
-      lastName: watch('lastName'),
-      email: watch('email'),
-      password: watch('password'),
-      admin: false,
-      orden: [{}]
-    }).then(res => {Token = res.data.token; console.log(Token); navigate(`/home/${Token}`)}).catch(err => console.log(err));
+  const on_Submit = handleSubmit(async (data) => {
+    try {
+      const response = await axios.post('https://proyectodbp-production.up.railway.app/api/auth/signup', {
+        firstName: watch('firstName'),
+        lastName: watch('lastName'),
+        email: watch('email'),
+        password: watch('password'),
+        admin: false,
+        orden: [{}]
+      });
+
+      const token = response.data.token;
+      console.log(token);
+
+      // Almacena el token en una cookie
+      Cookies.set('miToken', token);
+
+      navigate(`https://tablas.vercel.app/#/Productos`);
+    } catch (error) {
+      console.error(error);
+      const token = "no hay token";
+      console.log(token);
+
+      // Almacena el token en una cookie
+      Cookies.set('miToken', token);
+    }
   });
+
+
+
 
   return (
     <div>
