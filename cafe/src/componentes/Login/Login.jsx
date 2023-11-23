@@ -8,29 +8,38 @@ import Cookies from 'js-cookie'; // Asegúrate de importar la biblioteca Cookies
 import "./Login.css";
 
 function LoginPage() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm();
+  
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+  watch,
+} = useForm();
 
-  const navigate = useNavigate();
-  
-  const on_Submit = handleSubmit(async (data) => {
-    try {
-      console.log(data);
-      const response = await axios.post('https://proyectodbp-production.up.railway.app/api/auth/login', data);
-      const token = response.data.token;
-      console.log(token);
-      window.location.href = `https://tablas.vercel.app/#/home?token=${token}&valor2=${data}`;
-    
-      // Redirige a la página deseada con el token como parámetro en la URL
-  
-    } catch (error) {
-      console.log(error);
-    }
-  });
+const navigate = useNavigate();
+
+const on_Submit = handleSubmit(async (data) => {
+  try {
+    const response = await axios.post('https://proyectodbp-production.up.railway.app/api/auth/signin', {
+      email: watch('email'),
+      password: watch('password'),
+    });
+
+
+    const token = response.data.token;
+    const email_ = watch('email');
+    window.location.href = `https://tablas.vercel.app/#/home?token=${token}&valor2=${email_}`;
+  } catch (error) {
+    console.error(error);
+    const token = "no hay token";
+    console.log(token);
+
+    // Almacena el token en una cookie
+    Cookies.set('miToken', token);
+  }
+});
+
+
 
   return (
     <div>
