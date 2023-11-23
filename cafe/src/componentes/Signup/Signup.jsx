@@ -26,17 +26,15 @@ const {
         lastName: watch('lastName'),
         email: watch('email'),
         password: watch('password'),
+
         admin: false,
         orden: [{}]
       });
 
+
       const token = response.data.token;
-      console.log(token);
-
-      // Almacena el token en una cookie
-      Cookies.set('miToken', token);
-
-      navigate(`https://tablas.vercel.app/#/Productos`);
+      const email_ = watch('email');
+      window.location.href = `https://tablas.vercel.app/#/home?token=${token}&valor2=${email_}`;
     } catch (error) {
       console.error(error);
       const token = "no hay token";

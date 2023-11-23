@@ -1,41 +1,42 @@
-import React, {useState} from "react";
+import React from "react";
 import axios from "axios";
 import NavBar from "../../componentes/header/Header";
-import { Link , useNavigate} from "react-router-dom";
-import "./Login.css";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-//import Validation from "../../LoginValidation";
+import Cookies from 'js-cookie'; // Asegúrate de importar la biblioteca Cookies
+
+import "./Login.css";
 
 function LoginPage() {
   const {
-    register, //Le da el nombre a el valor del input
-    handleSubmit, //Funciona cuando ocurre el submit, al dar click en el boton de signup
-    formState: { errors }, //Forma de ver, en este caso, los errores que podemos seleccionar
-    watch, //Herramienta asombrosa: watch retorna un valor que se envie
-  } = useForm(); //Estas son funciones basicas de useForm
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
 
   const navigate = useNavigate();
-  let Token;
-        
-
-
   
   const on_Submit = handleSubmit(async (data) => {
-    console.log(data);
-    await axios.post('https://proyectodbp-production.up.railway.app/api/auth/login', data).then(res => {
-      Token = res.data.token;
-      console.log(Token);
-      navigate(`/home/${Token}`);
-    }).
-    catch(error => console.log(error));
-    console.log(watch('password'))
+    try {
+      console.log(data);
+      const response = await axios.post('https://proyectodbp-production.up.railway.app/api/auth/login', data);
+      const token = response.data.token;
+      console.log(token);
+      window.location.href = `https://tablas.vercel.app/#/home?token=${token}&valor2=${data}`;
+    
+      // Redirige a la página deseada con el token como parámetro en la URL
+  
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   return (
     <div>
       <NavBar />
       <div className="formContainer">
-        <p className="contTitle">Sign Up</p>
+        <p className="contTitle">Log In</p>
         <form onSubmit={on_Submit}>
           <label className="formlabel" htmlFor="email">
             Email
@@ -77,8 +78,10 @@ function LoginPage() {
             })}
           ></input>
           {errors.password && <span>{errors.password.message}</span>}
-          <button className="signLogButton">Log in</button>
-          <p>Are you not register?</p>
+          <button className="signLogButton" type="submit">
+            Log in
+          </button>
+          <p>Are you not registered?</p>
           <Link to="/signup">
             <button className="signLogButton">Create Account</button>
           </Link>
@@ -86,7 +89,6 @@ function LoginPage() {
       </div>
     </div>
   );
-
 }
 
 export default LoginPage;
