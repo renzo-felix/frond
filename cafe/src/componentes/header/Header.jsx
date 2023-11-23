@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../assets/logo.png';
 import { links } from '../../Data';
 import { FaStream }  from 'react-icons/fa';
-import { fetchProducto } from '../menu/Menu';
+import { fetchProducto } from '../Menu/Menu';
 import './header.css';
 import { Navigate} from 'react-router-dom';
 
